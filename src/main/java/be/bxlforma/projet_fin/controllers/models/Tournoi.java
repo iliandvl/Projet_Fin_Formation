@@ -1,12 +1,24 @@
 package be.bxlforma.projet_fin.controllers.models;
 
+import be.bxlforma.projet_fin.Accessibility;
+import be.bxlforma.projet_fin.dal.entities.GroupeEntity;
+import be.bxlforma.projet_fin.dal.entities.MatchTournoiEntity;
 import be.bxlforma.projet_fin.dal.entities.TournoiEntity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import lombok.Builder;
 import lombok.Setter;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Builder
 @Setter
@@ -14,22 +26,29 @@ import lombok.Getter;
 public class Tournoi {
 
     private Integer id;
-
-    @NotBlank
-    @Length(max = 100)
-    private String name;
+    private Accessibility accessibility;
+    @Nullable
+    private String password;
+    private List<Groupe> groupes;
+    private Set<MatchTournoi> matchTournois;
 
     public static Tournoi fromEntity(TournoiEntity entity) {
-        Tournoi.TournoiBuilder builder = new Tournoi.TournoiBuilder()
+        Tournoi.TournoiBuilder builder = new TournoiBuilder()
                 .id(entity.getId())
-                .accessibility(entity.getAccessibility());
+                .accessibility(entity.getAccessibility())
+                .password(entity.getPassword())
+                .groupes(entity.getGroupes().stream().map(Groupe::fromEntity).toList())
+                .matchTournois(entity.getMatchTournois().stream().map(MatchTournoi::fromEntity).collect(Collectors.toSet()));
 
         return builder.build();
     }
 
     public TournoiEntity toEntity() {
         TournoiEntity entity = new TournoiEntity();
-        entity.setName(getName());
+        entity.setAccessibility(getAccessibility());
+        entity.setPassword(getPassword());
+        entity.setGroupes(getGroupes().stream().map(Groupe::toEntity).toList());
+        entity.setMatchTournois(getMatchTournois().stream().map(MatchTournoi::toEntity).collect(Collectors.toSet()));
         return entity;
     }
 }

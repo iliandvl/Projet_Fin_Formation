@@ -39,10 +39,10 @@ public class Groupe {
 
     public GroupeEntity toEntity() {
         GroupeEntity entity = new GroupeEntity();
-        entity.setAccessibility(entity.getAccessibility());
-        entity.setPassword(entity.getPassword());
-        entity.setJoueurs(entity.getJoueurs().stream().map(Joueur::toEntity).toList());
-        entity.setMatchGroupes(entity.getMatchGroupes().stream().map(MatchGroupe::toEntity).collect(Collectors.toSet()));
+        entity.setAccessibility(getAccessibility());
+        entity.setPassword(getPassword());
+        entity.setJoueurs(getJoueurs().stream().map(Joueur::toEntity).toList());
+        entity.setMatchGroupes(getMatchGroupes().stream().map(MatchGroupe::toEntity).collect(Collectors.toSet()));
         return entity;
     }
 }

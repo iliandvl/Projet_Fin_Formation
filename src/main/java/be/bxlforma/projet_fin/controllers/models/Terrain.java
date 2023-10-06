@@ -13,23 +13,17 @@ import lombok.Getter;
 @Getter
 public class Terrain {
 
-    private Integer id;
-
-    @NotBlank
-    @Length(max = 100)
-    private String name;
+    private Integer numero;
 
     public static Terrain fromEntity(TerrainEntity entity) {
-        Terrain.TerrainBuilder builder = new Terrain.TerrainBuilder()
-                .id(entity.getId())
-                .name(entity.getName());
+        Terrain.TerrainBuilder builder = new TerrainBuilder()
+                .numero(entity.getNumero());
 
         return builder.build();
     }
 
     public TerrainEntity toEntity() {
         TerrainEntity entity = new TerrainEntity();
-        entity.setName(getName());
         return entity;
     }
 }
