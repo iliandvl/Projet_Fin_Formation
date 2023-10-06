@@ -8,28 +8,30 @@ import lombok.Builder;
 import lombok.Setter;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Setter
 @Getter
 public class Horaire {
 
     private Integer id;
-
-    @NotBlank
-    @Length(max = 100)
-    private String name;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     public static Horaire fromEntity(HoraireEntity entity) {
-        Horaire.HoraireBuilder builder = new Horaire.HoraireBuilder()
+        Horaire.HoraireBuilder builder = new HoraireBuilder()
                 .id(entity.getId())
-                .name(entity.getName());
+                .startTime(entity.getStartTime())
+                .endTime(entity.getEndTime());
 
         return builder.build();
     }
 
     public HoraireEntity toEntity() {
         HoraireEntity entity = new HoraireEntity();
-        entity.setName(getName());
+        entity.setStartTime(getStartTime());
+        entity.setEndTime(getEndTime());
         return entity;
     }
 }

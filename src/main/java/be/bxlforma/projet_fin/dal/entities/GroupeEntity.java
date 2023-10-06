@@ -4,6 +4,7 @@ import be.bxlforma.projet_fin.Accessibility;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +19,7 @@ public class GroupeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	//Auto-Incrémentée
 	private Integer id;
 	private Accessibility accessibility;
+	@Nullable
 	private String password;
 	@ManyToMany
 	private List<JoueurEntity> joueurs;

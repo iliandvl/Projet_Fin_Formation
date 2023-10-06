@@ -1,5 +1,6 @@
 package be.bxlforma.projet_fin.controllers.models;
 
+import be.bxlforma.projet_fin.Accessibility;
 import be.bxlforma.projet_fin.dal.entities.GroupeEntity;
 
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +8,11 @@ import org.hibernate.validator.constraints.Length;
 import lombok.Builder;
 import lombok.Setter;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Builder
 @Setter
@@ -14,22 +20,29 @@ import lombok.Getter;
 public class Groupe {
 
     private Integer id;
-
-    @NotBlank
-    @Length(max = 100)
-    private String name;
+    private Accessibility accessibility;
+    @Nullable
+    private String password;
+    private List<Joueur> joueurs;
+    private Set<MatchGroupe> matchGroupes;
 
     public static Groupe fromEntity(GroupeEntity entity) {
-        Groupe.GroupeBuilder builder = new Groupe.GroupeBuilder()
+        Groupe.GroupeBuilder builder = new GroupeBuilder()
                 .id(entity.getId())
-                .name(entity.getName());
+                .accessibility(entity.getAccessibility())
+                .password(entity.getPassword())
+                .joueurs(entity.getJoueurs().stream().map(Joueur::fromEntity).toList())
+                .matchGroupes(entity.getMatchGroupes().stream().map(MatchGroupe::fromEntity).collect(Collectors.toSet()));
 
         return builder.build();
     }
 
     public GroupeEntity toEntity() {
         GroupeEntity entity = new GroupeEntity();
-        entity.setName(getName());
+        entity.setAccessibility(entity.getAccessibility());
+        entity.setPassword(entity.getPassword());
+        entity.setJoueurs(entity.getJoueurs().stream().map(Joueur::toEntity).toList());
+        entity.setMatchGroupes(entity.getMatchGroupes().stream().map(MatchGroupe::toEntity).collect(Collectors.toSet()));
         return entity;
     }
 }

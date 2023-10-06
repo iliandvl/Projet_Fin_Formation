@@ -4,6 +4,7 @@ import be.bxlforma.projet_fin.Accessibility;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class MatchEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	//Auto-Incrémentée
 	private Integer id;
 	private Accessibility accessibility;
+	@Nullable
 	private String password;
 	@ManyToOne
 	private  TerrainEntity terrain;
