@@ -5,6 +5,7 @@ import be.bxlforma.projet_fin.dal.repositories.JoueurRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -17,8 +18,8 @@ public class JoueurServiceImpl implements JoueurService {
         this.joueurRepository = joueurRepository;
     }
 
-    public Collection<JoueurEntity> findAll() {
-        return this.joueurRepository.findAll();
+    public ArrayList<JoueurEntity> findAll() {
+        return (ArrayList<JoueurEntity>) this.joueurRepository.findAll();
     }
 
     public Optional<JoueurEntity> findOneById(int id) {

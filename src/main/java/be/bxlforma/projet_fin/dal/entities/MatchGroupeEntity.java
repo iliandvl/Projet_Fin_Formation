@@ -1,19 +1,17 @@
 package be.bxlforma.projet_fin.dal.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
 
 @Entity(name = "MatchGroupe")	// Nom de l'entité Spring
 @Table(name = "matchgroupe")	// Nom de la table en DB
-@Getter
-@Setter
+@Data
 public class MatchGroupeEntity {
 	@Id
-	private Integer matchId;
-	@Id
-	private Integer groupeId;
+	private Integer id;
 	@Nullable
 	private Integer score;
 	@ManyToOne(fetch = FetchType.LAZY)

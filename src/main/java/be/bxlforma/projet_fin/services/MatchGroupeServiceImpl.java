@@ -5,6 +5,7 @@ import be.bxlforma.projet_fin.dal.repositories.MatchGroupeRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -17,8 +18,8 @@ public class MatchGroupeServiceImpl implements MatchGroupeService {
         this.matchGroupeRepository = matchGroupeRepository;
     }
 
-    public Collection<MatchGroupeEntity> findAll() {
-        return this.matchGroupeRepository.findAll();
+    public ArrayList<MatchGroupeEntity> findAll() {
+        return (ArrayList<MatchGroupeEntity>) this.matchGroupeRepository.findAll();
     }
 
     public Optional<MatchGroupeEntity> findOneById(int id) {

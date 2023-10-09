@@ -5,6 +5,7 @@ import be.bxlforma.projet_fin.dal.repositories.HoraireRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -17,8 +18,8 @@ public class HoraireServiceImpl implements HoraireService {
         this.horaireRepository = horaireRepository;
     }
 
-    public Collection<HoraireEntity> findAll() {
-        return this.horaireRepository.findAll();
+    public ArrayList<HoraireEntity> findAll() {
+        return (ArrayList<HoraireEntity>) this.horaireRepository.findAll();
     }
 
     public Optional<HoraireEntity> findOneById(int id) {

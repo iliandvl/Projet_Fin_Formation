@@ -2,6 +2,7 @@ package be.bxlforma.projet_fin.dal.entities;
 
 import be.bxlforma.projet_fin.Accessibility;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
@@ -12,10 +13,9 @@ import java.util.List;
 
 @Entity(name = "Tournoi")	// Nom de l'entité Spring
 @Table(name = "tournoi")	// Nom de la table en DB
-@Getter
-@Setter
+@Data
 public class TournoiEntity {
-	@Id		// Primary Key
+	@Id	// Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	//Auto-Incrémentée
 	private Integer id;
 	private Accessibility accessibility;

@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 @Getter
 public class MatchGroupe {
 
-    private Integer matchId;
-    private Integer groupeId;
+    private Integer id;
     @Nullable
     private Integer score;
     private Match match;
@@ -29,8 +28,7 @@ public class MatchGroupe {
 
     public static MatchGroupe fromEntity(MatchGroupeEntity entity) {
         MatchGroupe.MatchGroupeBuilder builder = new MatchGroupeBuilder()
-                .matchId(entity.getMatchId())
-                .groupeId(entity.getGroupeId())
+                .id(entity.getId())
                 .score(entity.getScore())
                 .match(Match.fromEntity(entity.getMatch()))
                 .groupe(Groupe.fromEntity(entity.getGroupe()));

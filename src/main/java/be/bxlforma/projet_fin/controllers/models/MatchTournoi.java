@@ -14,16 +14,14 @@ import org.springframework.lang.Nullable;
 @Getter
 public class MatchTournoi {
 
-    private Integer matchId;
-    private Integer tournoiId;
+    private Integer id;
     private Integer order;
     private Match match;
     private Tournoi tournoi;
 
     public static MatchTournoi fromEntity(MatchTournoiEntity entity) {
         MatchTournoi.MatchTournoiBuilder builder = new MatchTournoiBuilder()
-                .matchId(entity.getMatchId())
-                .tournoiId(entity.getTournoiId())
+                .id(entity.getId())
                 .order(entity.getOrder())
                 .match(Match.fromEntity(entity.getMatch()))
                 .tournoi(Tournoi.fromEntity(entity.getTournoi()));

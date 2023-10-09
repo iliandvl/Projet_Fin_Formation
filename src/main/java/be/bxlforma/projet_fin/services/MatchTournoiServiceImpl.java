@@ -5,6 +5,7 @@ import be.bxlforma.projet_fin.dal.repositories.MatchTournoiRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -17,8 +18,8 @@ public class MatchTournoiServiceImpl implements MatchTournoiService {
         this.matchTournoiRepository = matchTournoiRepository;
     }
 
-    public Collection<MatchTournoiEntity> findAll() {
-        return this.matchTournoiRepository.findAll();
+    public ArrayList<MatchTournoiEntity> findAll() {
+        return (ArrayList<MatchTournoiEntity>) this.matchTournoiRepository.findAll();
     }
 
     public Optional<MatchTournoiEntity> findOneById(int id) {
