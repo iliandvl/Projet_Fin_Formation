@@ -41,7 +41,7 @@ public class TournoiController {
         return ResponseEntity.ok(tournoiList);
     }
 
-    @GetMapping(path= {"/{id}/tournois"})
+    @GetMapping(path= {"/{id}/matchs"})
     public ResponseEntity<List<MatchTournoiEntity>> getMatchAction(
             @PathVariable("id") int id
     ) {

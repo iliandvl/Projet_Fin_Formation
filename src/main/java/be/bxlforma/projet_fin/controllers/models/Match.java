@@ -36,9 +36,7 @@ public class Match {
                 .accessibility(entity.getAccessibility())
                 .password(entity.getPassword())
                 .terrain(Terrain.fromEntity(entity.getTerrain()))
-                .horaire(Horaire.fromEntity(entity.getHoraire()))
-                .matchTournois(entity.getMatchTournois().stream().map(MatchTournoi::fromEntity).collect(Collectors.toSet()))
-                .matchGroupes(entity.getMatchGroupes().stream().map(MatchGroupe::fromEntity).collect(Collectors.toSet()));
+                .horaire(Horaire.fromEntity(entity.getHoraire()));
 
         return builder.build();
     }
@@ -49,8 +47,6 @@ public class Match {
         entity.setPassword(getPassword());
         entity.setTerrain(getTerrain().toEntity());
         entity.setHoraire(getHoraire().toEntity());
-        entity.setMatchTournois(getMatchTournois().stream().map(MatchTournoi::toEntity).collect(Collectors.toSet()));
-        entity.setMatchGroupes(getMatchGroupes().stream().map(MatchGroupe::toEntity).collect(Collectors.toSet()));
 
         return entity;
     }

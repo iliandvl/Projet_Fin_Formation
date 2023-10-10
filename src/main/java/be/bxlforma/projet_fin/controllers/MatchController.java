@@ -50,11 +50,11 @@ public class MatchController {
     }
 
     @GetMapping(path= {"/{id}/groupes"})
-    public ResponseEntity<List<MatchGroupeEntity>> getGroupAction(
+    public List<MatchGroupeEntity> getGroupAction(
             @PathVariable("id") int id
     ) {
 
-        return ResponseEntity.ok(this.matchGroupeService.findAllByMatch(id));
+        return this.matchGroupeService.findAllByMatch(id);
     }
 
     @GetMapping(path= {"/{id}/tournois"})

@@ -37,8 +37,7 @@ public class Tournoi {
                 .id(entity.getId())
                 .accessibility(entity.getAccessibility())
                 .password(entity.getPassword())
-                .groupes(entity.getGroupes().stream().map(Groupe::fromEntity).toList())
-                .matchTournois(entity.getMatchTournois().stream().map(MatchTournoi::fromEntity).collect(Collectors.toSet()));
+                .groupes(entity.getGroupes().stream().map(Groupe::fromEntity).toList());
 
         return builder.build();
     }
@@ -48,7 +47,6 @@ public class Tournoi {
         entity.setAccessibility(getAccessibility());
         entity.setPassword(getPassword());
         entity.setGroupes(getGroupes().stream().map(Groupe::toEntity).toList());
-        entity.setMatchTournois(getMatchTournois().stream().map(MatchTournoi::toEntity).collect(Collectors.toSet()));
         return entity;
     }
 }
