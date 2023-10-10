@@ -1,9 +1,14 @@
 package be.bxlforma.projet_fin.controllers;
 
+import be.bxlforma.projet_fin.controllers.models.MatchTournoi;
+import be.bxlforma.projet_fin.dal.entities.MatchGroupeEntity;
+import be.bxlforma.projet_fin.dal.entities.MatchTournoiEntity;
+import be.bxlforma.projet_fin.services.MatchGroupeService;
 import be.bxlforma.projet_fin.services.MatchService;
 import be.bxlforma.projet_fin.dal.entities.MatchEntity;
 import be.bxlforma.projet_fin.controllers.models.Match;
 
+import be.bxlforma.projet_fin.services.MatchTournoiService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,8 +27,15 @@ import java.util.Collection;
 public class MatchController {
     private final MatchService matchService;
 
-    public MatchController(MatchService matchService) {
+    private final MatchGroupeService matchGroupeService;
+
+    private final MatchTournoiService matchTournoiService;
+
+    public MatchController(MatchService matchService, MatchGroupeService matchGroupeService, MatchTournoiService matchTournoiService) {
+
         this.matchService = matchService;
+        this.matchGroupeService = matchGroupeService;
+        this.matchTournoiService = matchTournoiService;
     }
 
     @GetMapping(path = {"", "/"})
@@ -35,6 +47,22 @@ public class MatchController {
                 .toList();
 
         return ResponseEntity.ok(matchList);
+    }
+
+    @GetMapping(path= {"/{id}/groupes"})
+    public ResponseEntity<List<MatchGroupeEntity>> getGroupAction(
+            @PathVariable("id") int id
+    ) {
+
+        return ResponseEntity.ok(this.matchGroupeService.findAllByMatch(id));
+    }
+
+    @GetMapping(path= {"/{id}/tournois"})
+    public ResponseEntity<List<MatchTournoiEntity>> getTournoiAction(
+            @PathVariable("id") int id
+    ) {
+
+        return ResponseEntity.ok(this.matchTournoiService.findAllByMatch(id));
     }
 
     @GetMapping(path = {"/{id}"})

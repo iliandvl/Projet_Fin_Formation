@@ -23,6 +23,6 @@ public class GroupeEntity {
 	private String password;
 	@ManyToMany
 	private List<JoueurEntity> joueurs;
-	@OneToMany(mappedBy = "groupe",cascade = CascadeType.ALL)
-	private Set<MatchGroupeEntity> matchGroupes = new HashSet<>();
+//	@OneToMany(mappedBy = "groupe",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private List<MatchGroupeEntity> matchGroupes;
 }

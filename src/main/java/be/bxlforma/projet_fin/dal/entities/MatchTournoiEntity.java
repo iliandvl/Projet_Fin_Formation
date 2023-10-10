@@ -11,6 +11,7 @@ import lombok.Setter;
 public class MatchTournoiEntity {
 	@Id		// Primary Key
 	private Integer id;
+	@Column(name = "match_order")
 	private Integer order;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "match_id")

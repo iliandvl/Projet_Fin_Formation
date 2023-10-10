@@ -1,5 +1,7 @@
 package be.bxlforma.projet_fin.controllers;
 
+import be.bxlforma.projet_fin.dal.entities.MatchTournoiEntity;
+import be.bxlforma.projet_fin.services.MatchTournoiService;
 import be.bxlforma.projet_fin.services.TournoiService;
 import be.bxlforma.projet_fin.dal.entities.TournoiEntity;
 import be.bxlforma.projet_fin.controllers.models.Tournoi;
@@ -21,9 +23,11 @@ import java.util.Collection;
 @RequestMapping(path = {"/Tournois"})
 public class TournoiController {
     private final TournoiService tournoiService;
+    private final MatchTournoiService matchTournoiService;
 
-    public TournoiController(TournoiService tournoiService) {
+    public TournoiController(TournoiService tournoiService, MatchTournoiService matchTournoiService) {
         this.tournoiService = tournoiService;
+        this.matchTournoiService = matchTournoiService;
     }
 
     @GetMapping(path = {"", "/"})
@@ -35,6 +39,14 @@ public class TournoiController {
                 .toList();
 
         return ResponseEntity.ok(tournoiList);
+    }
+
+    @GetMapping(path= {"/{id}/tournois"})
+    public ResponseEntity<List<MatchTournoiEntity>> getMatchAction(
+            @PathVariable("id") int id
+    ) {
+
+        return ResponseEntity.ok(this.matchTournoiService.findAllByTournoi(id));
     }
 
     @GetMapping(path = {"/{id}"})

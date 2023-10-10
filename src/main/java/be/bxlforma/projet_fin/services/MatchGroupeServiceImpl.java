@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -29,4 +30,14 @@ public class MatchGroupeServiceImpl implements MatchGroupeService {
     public void insert(MatchGroupeEntity entity) {
         this.matchGroupeRepository.save(entity);
     }
+
+
+    public List<MatchGroupeEntity> findAllByGroup(int id){
+        return this.matchGroupeRepository.findAllByGroup(id);
+    }
+
+    public List<MatchGroupeEntity> findAllByMatch(int id){
+        return this.matchGroupeRepository.findAllByMatch(id);
+    };
+
 }

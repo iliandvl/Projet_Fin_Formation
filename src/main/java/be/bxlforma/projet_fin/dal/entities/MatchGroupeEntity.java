@@ -14,10 +14,10 @@ public class MatchGroupeEntity {
 	private Integer id;
 	@Nullable
 	private Integer score;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "match_id")
 	private MatchEntity match;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "groupe_id")
 	private GroupeEntity groupe;
 }

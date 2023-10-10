@@ -5,7 +5,8 @@ import be.bxlforma.projet_fin.dal.repositories.GroupeRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.List;
 import java.util.Optional;
 import java.util.Collection;
 
@@ -18,8 +19,9 @@ public class GroupeServiceImpl implements GroupeService {
         this.groupeRepository = groupeRepository;
     }
 
-    public ArrayList<GroupeEntity> findAll() {
-        return (ArrayList<GroupeEntity>) this.groupeRepository.findAll();
+    @Override
+    public List<GroupeEntity> findAll() {
+        return this.groupeRepository.findAll();
     }
 
     public Optional<GroupeEntity> findOneById(int id) {
