@@ -26,8 +26,8 @@ public class MatchEntity {
 	private  TerrainEntity terrain;
 	@ManyToOne
 	private HoraireEntity horaire;
-	@OneToMany(mappedBy = "match",cascade = CascadeType.ALL)
-	private Set<MatchTournoiEntity> matchTournois = new HashSet<>();
-	@OneToMany(mappedBy = "match",cascade = CascadeType.ALL)
-	private Set<MatchGroupeEntity> matchGroupes = new HashSet<>();
+//	@OneToMany(mappedBy = "match",cascade = CascadeType.ALL)
+//	private Set<MatchTournoiEntity> matchTournois = new HashSet<>();
+//	@OneToMany(mappedBy = "match",cascade = CascadeType.ALL)
+//	private Set<MatchGroupeEntity> matchGroupes = new HashSet<>();
 }
