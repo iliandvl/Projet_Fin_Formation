@@ -28,7 +28,7 @@ public class GroupeController {
         this.matchGroupeService = matchGroupeService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<List<Groupe>> getAllAction() {
         Collection<GroupeEntity> response = this.groupeService.findAll();
 
